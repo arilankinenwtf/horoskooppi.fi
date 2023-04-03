@@ -1,0 +1,110 @@
+// Rakenteiden/alueiden tyylit
+
+.layout {
+  padding-top: @layout-padding;
+  padding-bottom: @layout-padding;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  z-index: 300;
+  @media @desktop-max {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
+  }
+
+  &-top-element {
+    margin-top: 10rem;
+  }
+
+  &-desktop-hide {
+    @media @desktop {
+      display: none;
+    }
+  }
+
+  &-mobile-hide {
+    @media @desktop-max {
+      display: none;
+    }
+  }
+
+  &-margin {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    @media @desktop-max {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &-dark {
+    .layout-style (@layout-dark-bg, @layout-dark-color);
+  }
+
+  &-line-top {
+    margin-left: 0rem;
+    margin-right: 1rem;
+    margin-bottom: 4rem;
+    padding-top: 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid @black;
+    a {
+      color: @black;
+      &:hover,
+      &:active,
+      &:focus {
+        color: @green;
+      }
+    }
+  }
+
+  &-index-top {
+    z-index: 999 !important;
+  }
+
+  &-large-padding {
+    padding-bottom: @layout-padding-lg;
+    padding-top: @layout-padding-lg;
+  }
+
+  &-center-mobile {
+    @media @desktop-max {
+      text-align: center;
+    }
+  }
+
+  &-logot {
+    img {
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+    @media @desktop-max {
+      img {
+        width: 100px;
+        height: auto;
+        margin: 10px;
+      }
+      h2 {
+        text-align: center;
+      }
+    }
+  }
+
+  &-center-vertically {
+    .row {
+      @media @tablet {
+        align-items: center;
+        display: flex;
+      }
+    }
+  }
+
+  &-yhteys {
+    img {
+      height: 200px;
+      width: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+// Jos sivulle lisää automaattisen navigaation lohkovalikosta, se käyttää näitä tyylejä
+
+ul.nav {
+  z-index: 400;
+  li {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    a {
+      font-size: 20px;
+      font-weight: 700;
+      color: @nav-color;
+      background-color: @white;
+      text-decoration: none;
+      margin-bottom: 10px;
+      &:hover,
+      &:focus,
+      &:active {
+        color: @green;
+      }
+    }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      > ul {
+        display: block;
+      }
+    }
+
+    &.nav-path-selected {
+      @media @desktop {
+        background-color: @nav-link-hover-bg;
+        a {
+          color: @green;
+        }
+      }
+    }
+  }
+}
+

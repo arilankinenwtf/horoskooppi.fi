@@ -1,0 +1,119 @@
+.news-list {
+  margin-top: 0rem;
+  margin-bottom: 3rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media @desktop-max {
+    flex-direction: column;
+  }
+    &-item {
+      position: relative;
+      border-top-right-radius: 50px;
+      list-style: none;
+      flex: 0 0 96%;
+      margin: 2%;
+      z-index: 300;
+      padding: 1rem;
+      @media @tablet {
+        flex: 0 0 45.9999%;
+      }
+    
+      @media @small-desktop {
+        flex: 0 0 29.33%;
+      }
+
+      h2, h3, h4 {
+        font-size: 1.5rem;
+      }
+      
+      &-date {
+        display: none;
+      }
+      &-thumbnail {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+        border-top-right-radius: 50px;
+      }
+      &-title {
+        height: 10rem;
+        a {
+          text-decoration: none;
+          word-wrap: break-word;
+        }
+        padding: 2rem;
+        padding-bottom: 3.5rem;
+        &::before {
+          content: "Lue";
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: @black;
+          display: inline-block;
+          left: 2.5rem;
+          bottom: 2.5rem;
+          position: absolute;
+        }        
+        &::after {
+          content: "➔";
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: @green;
+          display: inline-block;
+          left: 5.5rem;
+          bottom: 2.5rem;
+          position: absolute;
+        }
+      }
+
+      &-description {
+        display: none;
+      }
+
+      &-image {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+        border-top-right-radius: 50px;
+        @media @desktop {
+          border-radius: 50%;
+        }
+  
+        &-wrapper {
+          display: none;
+          max-width: 100%;
+  
+          @media @desktop {
+            display: block;
+            left: 0;
+            position: absolute !important;
+            z-index: -1;
+          }
+        }
+      }
+  
+      &-content {
+        box-shadow: 0px 3px 8px #00000029;
+        transition: box-shadow ease-in-out 0.3s;
+        border-top-right-radius: 50px;
+      }
+      &-content:hover {
+        box-shadow: 0px 6px 12px #00000048;
+        .news-list-item {
+          &-title {
+            color: @green;
+          }
+        }
+      }
+    }
+  
+    &-frontpage {
+    
+      @media @desktop {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
