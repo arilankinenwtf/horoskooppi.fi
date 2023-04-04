@@ -4,7 +4,7 @@ $th = Loader::helper('text');
 $c = Page::getCurrentPage();
 ?>
 
-<div class="news-list">
+<div class="news-list news-yksi">
   <?php foreach ($pages as $page): ?>
     <div class="news-list-item">
       <?php
@@ -29,41 +29,31 @@ $c = Page::getCurrentPage();
         $main_image = $page->getAttribute('main_image');
         $src = $main_image->getThumbnailURL($type->getBaseVersion());
       }
-
-      // if($page->getAttribute('main_image')) {
-      //   $type = \Concrete\Core\File\Image\Thumbnail\Type\Type::getByHandle('news_image_thumbnail');
-      //   $main_image = $page->getAttribute('main_image');
-      //   $src = $main_image->getThumbnailURL($type->getBaseVersion());
-      // }
-
+      
       ?>
     <div class="news-list-item-content">
       <a href="<?php echo $url ?>" target="<?php echo $target; ?>">
-        <!-- <img class="news-list-item-thumbnail" src="<?php # echo $src; ?>" alt="<?php # echo $title ?>"> -->
-        <div class="news-list-item-date"><?php echo $date; ?></div>
-        <h2 class="news-list-item-title">
-          <?php echo $title ?>
-        </h2>
-      </a>
+        <img class="news-list-item-thumbnail" src="<?php echo $src; ?>" alt="<?php echo $title ?>">
 
-      <div class="news-list-item-text-wrapper">
-        <!-- <div class="news-list-item-date"><?php echo $date; ?></div>
-        <h2 class="news-list-item-title">
-          <?php # echo $title ?>
-        </h2> -->
+        <div class="news-list-item-text-wrapper">
+          <div class="news-list-item-date"><?php echo $date; ?></div>
+          <h2 class="news-list-item-title">
+            <?php echo $title ?>
+          </h2>
 
-        <?php if ($includeDescription): ?>
-        <!-- <div class="news-list-item-description">
-          <?php # echo $description ?>
-        </div> -->
-        <?php endif; ?>
+          <?php if ($includeDescription): ?>
+          <div class="news-list-item-description">
+            <?php echo $description ?>
+          </div>
+          <?php endif; ?>
 
-        <?php if (isset($useButtonForLink) && $useButtonForLink): ?>
-        <div class="news-list-item-readmore top-border">
+          <?php if (isset($useButtonForLink) && $useButtonForLink): ?>
+          <div class="news-list-item-readmore top-border">
             <a href="<?php echo $url?>" target="<?php echo $target?>" class="btn btn-secondary"><?php echo $buttonLinkText?></a>
+          </div>
+          <?php endif; ?>
         </div>
-        <?php endif; ?>
-      </div>
+      </a>
     </div>
     
   </div>
