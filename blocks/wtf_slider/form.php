@@ -2,7 +2,6 @@
 
 $fp = FilePermissions::getGlobal();
 $tp = new TaskPermission();
-
 $getString = Core::make('helper/validation/identifier')->getString(18);
 $tabs = [
     ['slides-' . $getString, t('Items'), true],
@@ -17,8 +16,8 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
     var launchEditor = <?=$editorJavascript; ?>;
     $(document).ready(function() {
         var ccmReceivingEntry = '';
-        var sliderEntriesContainer = $('.ccm-image-slider-entries-<?php echo $bID; ?>');
-        var _templateSlide = _.template($('#imageTemplate-<?php echo $bID; ?>').html());
+        var sliderEntriesContainer = $('.ccm-image-slider-entries-<?php echo $bID ?? ""; ?>');
+        var _templateSlide = _.template($('#imageTemplate-<?php echo $bID ?? ""; ?>').html());
 
         var attachDelete = function($obj) {
             $obj.click(function() {
@@ -29,7 +28,7 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
                         CKEDITOR.instances[slideID].destroy();
                     }
 
-                    $(this).closest('.ccm-image-slider-entry-<?php echo $bID; ?>').remove();
+                    $(this).closest('.ccm-image-slider-entry-<?php echo $bID ?? ""; ?>').remove();
                     doSortCount();
                 }
             });
@@ -50,12 +49,12 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
         };
 
         var doSortCount = function() {
-            $('.ccm-image-slider-entry-<?php echo $bID; ?>').each(function(index) {
+            $('.ccm-image-slider-entry-<?php echo $bID ?? ""; ?>').each(function(index) {
                 $(this).find('.ccm-image-slider-entry-sort').val(index);
             });
         };
 
-        <?php if ($rows) {
+        <?php if ($rows ?? "") {
           foreach ($rows as $row) { ?>
             sliderEntriesContainer.append(_templateSlide({
                 fID: '<?php echo $row['fID']; ?>',
@@ -76,7 +75,7 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
         doSortCount();
         sliderEntriesContainer.find('select[data-field=entry-link-select]').trigger('change');
 
-        $('.ccm-add-image-slider-entry-<?php echo $bID; ?>').click(function() {
+        $('.ccm-add-image-slider-entry-<?php echo $bID ?? ""; ?>').click(function() {
             var thisModal = $(this).closest('.ui-dialog-content');
             sliderEntriesContainer.append(_templateSlide({
                 fID: '',
@@ -86,24 +85,24 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
                 image_url: ''
             }));
 
-            $('.ccm-image-slider-entry-<?php echo $bID; ?>').not('.slide-closed').each(function() {
+            $('.ccm-image-slider-entry-<?php echo $bID ?? ""; ?>').not('.slide-closed').each(function() {
                 $(this).addClass('slide-closed');
-                var thisEditButton = $(this).closest('.ccm-image-slider-entry-<?php echo $bID; ?>').find('.btn.ccm-edit-slide');
+                var thisEditButton = $(this).closest('.ccm-image-slider-entry-<?php echo $bID ?? ""; ?>').find('.btn.ccm-edit-slide');
                 thisEditButton.text(thisEditButton.data('slideEditText'));
             });
-            var newSlide = $('.ccm-image-slider-entry-<?php echo $bID; ?>').last();
+            var newSlide = $('.ccm-image-slider-entry-<?php echo $bID ?? ""; ?>').last();
             var closeText = newSlide.find('.btn.ccm-edit-slide').data('slideCloseText');
             newSlide.removeClass('slide-closed').find('.btn.ccm-edit-slide').text(closeText);
 
             thisModal.scrollTop(newSlide.offset().top);
             launchEditor(newSlide.find('.editor-content'));
-            attachDelete(newSlide.find('.ccm-delete-image-slider-entry-<?php echo $bID; ?>'));
+            attachDelete(newSlide.find('.ccm-delete-image-slider-entry-<?php echo $bID ?? ""; ?>'));
             attachFileManagerLaunch(newSlide.find('.ccm-pick-slide-image'));
             doSortCount();
         });
 
-        $('.ccm-image-slider-entries-<?php echo $bID; ?>').on('click','.ccm-edit-slide', function() {
-            $(this).closest('.ccm-image-slider-entry-<?php echo $bID; ?>').toggleClass('slide-closed');
+        $('.ccm-image-slider-entries-<?php echo $bID ?? ""; ?>').on('click','.ccm-edit-slide', function() {
+            $(this).closest('.ccm-image-slider-entry-<?php echo $bID ?? ""; ?>').toggleClass('slide-closed');
             var thisEditButton = $(this);
             if (thisEditButton.data('slideEditText') === thisEditButton.text()) {
                 thisEditButton.text(thisEditButton.data('slideCloseText'));
@@ -112,7 +111,7 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
             }
         });
 
-        $('.ccm-image-slider-entries-<?php echo $bID; ?>').sortable({
+        $('.ccm-image-slider-entries-<?php echo $bID ?? ""; ?>').sortable({
             placeholder: "ui-state-highlight",
             axis: "y",
             handle: "i.fa-arrows",
@@ -122,11 +121,11 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
             }
         });
 
-        attachDelete($('.ccm-delete-image-slider-entry-<?php echo $bID; ?>'));
-        attachFileManagerLaunch($('.ccm-pick-slide-image-<?php echo $bID; ?>'));
+        attachDelete($('.ccm-delete-image-slider-entry-<?php echo $bID ?? ""; ?>'));
+        attachFileManagerLaunch($('.ccm-pick-slide-image-<?php echo $bID ?? ""; ?>'));
         $(function() {  // activate editors
-            if ($('.editor-content-<?php echo $bID; ?>').length) {
-                launchEditor($('.editor-content-<?php echo $bID; ?>'));
+            if ($('.editor-content-<?php echo $bID ?? ""; ?>').length) {
+                launchEditor($('.editor-content-<?php echo $bID ?? ""; ?>'));
             }
         });
 
@@ -244,18 +243,18 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
 
 <div id="ccm-tab-content-slides-<?php echo $getString; ?>" class="ccm-tab-content">
     <div class="ccm-image-slider-block-container">
-        <div class="ccm-image-slider-entries ccm-image-slider-entries-<?php echo $bID; ?>"></div>
+        <div class="ccm-image-slider-entries ccm-image-slider-entries-<?php echo $bID ?? ""; ?>"></div>
         <div>
-            <button type="button" class="btn btn-success ccm-add-image-slider-entry ccm-add-image-slider-entry-<?php echo $bID; ?>"><?php echo t('Add item'); ?></button>
+            <button type="button" class="btn btn-success ccm-add-image-slider-entry ccm-add-image-slider-entry-<?php echo $bID ?? ""; ?>"><?php echo t('Add item'); ?></button>
         </div>
     </div>
 </div>
 
-<script type="text/template" id="imageTemplate-<?php echo $bID; ?>">
-    <div class="ccm-image-slider-entry ccm-image-slider-entry-<?php echo $bID; ?> slide-well slide-closed">
+<script type="text/template" id="imageTemplate-<?php echo $bID ?? ""; ?>">
+    <div class="ccm-image-slider-entry ccm-image-slider-entry-<?php echo $bID ?? ""; ?> slide-well slide-closed">
         <div class="form-group">
             <label class="control-label"><?php echo t('Image'); ?></label>
-            <div class="ccm-pick-slide-image ccm-pick-slide-image-<?php echo $bID; ?>">
+            <div class="ccm-pick-slide-image ccm-pick-slide-image-<?php echo $bID ?? ""; ?>">
                 <% if (image_url.length > 0) { %>
                     <img src="<%= image_url %>" />
                 <% } else { %>
@@ -265,17 +264,17 @@ echo Core::make('helper/concrete/ui')->tabs($tabs);
             <input type="hidden" name="<?php echo $view->field('fID'); ?>[]" class="image-fID" value="<%=fID%>" />
         </div>
         <div class="form-group" >
-            <label class="control-label"><?php echo t('Title'); ?></label>
+            <label class="control-label"><?php echo t('Taustaväri, esim: #F4F4F4'); ?></label>
             <input class="form-control ccm-input-text" type="text" name="<?php echo $view->field('titleText'); ?>[]" value="<%=titleText%>" />
         </div>
         <div class="form-group" >
             <label class="control-label"><?php echo t('Content'); ?></label>
             <div class="editor-edit-content"></div>
-            <textarea id="ccm-slide-editor-<%= _.uniqueId() %>" style="display: none" class="editor-content editor-content-<?php echo $bID; ?>" name="<?php echo $view->field('descriptionText'); ?>[]"><%=descriptionText%></textarea>
+            <textarea id="ccm-slide-editor-<%= _.uniqueId() %>" style="display: none" class="editor-content editor-content-<?php echo $bID ?? ""; ?>" name="<?php echo $view->field('descriptionText'); ?>[]"><%=descriptionText%></textarea>
         </div>
 
-        <button type="button" class="btn btn-sm btn-default ccm-edit-slide ccm-edit-slide-<?php echo $bID; ?>" data-slide-close-text="<?php echo t('Collapse entry'); ?>" data-slide-edit-text="<?php echo t('Edit item'); ?>"><?php echo t('Edit item'); ?></button>
-        <button type="button" class="btn btn-sm btn-danger ccm-delete-image-slider-entry ccm-delete-image-slider-entry-<?php echo $bID; ?>"><?php echo t('Remove'); ?></button>
+        <button type="button" class="btn btn-sm btn-default ccm-edit-slide ccm-edit-slide-<?php echo $bID ?? ""; ?>" data-slide-close-text="<?php echo t('Collapse entry'); ?>" data-slide-edit-text="<?php echo t('Edit item'); ?>"><?php echo t('Edit item'); ?></button>
+        <button type="button" class="btn btn-sm btn-danger ccm-delete-image-slider-entry ccm-delete-image-slider-entry-<?php echo $bID ?? ""; ?>"><?php echo t('Remove'); ?></button>
         <i class="fa fa-arrows"></i>
 
         <input class="ccm-image-slider-entry-sort" type="hidden" name="<?php echo $view->field('sortOrder'); ?>[]" value="<%=sort_order%>"/>

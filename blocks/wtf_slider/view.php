@@ -62,9 +62,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 	var splide = new Splide( '#wtf-slider-<?php echo $bID; ?>', {
     rewind: true,
-    pagination: false,
+    pagination: true,
     autoplay: true,
-    interval: 8000
+    type: "loop",
+    interval: 8000,
     //lazyload: 'nearby'
   } ).mount();
 

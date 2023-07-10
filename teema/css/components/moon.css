@@ -1,0 +1,43 @@
+#contain_moon{
+    max-width: 200px;
+    margin: auto;
+    margin-top:25px;
+    text-align: center;
+    color:thistle;
+  }
+  #contain_moon div{
+    position:relative;
+    z-index: 1;
+  }
+  #contain_moon div:nth-child(1) {
+    /* title */
+    font-size: 24px;
+    font-weight: bold; 
+  }
+  #contain_moon div:nth-child(2) {
+   /* image */
+    margin: 10px 0;
+    filter:drop-shadow(0 0 40px rgb(108,95,108));
+    z-index:0;
+  }
+  #contain_moon div:nth-child(3) {
+     /* Name phase  */
+    font-size: 18px;
+  }
+  #contain_moon div:nth-child(4) {
+     /* next full moon */
+    font-style: italic;
+    font-size:12px;  
+    margin-top:10px;
+    border:1px solid #362f36;
+    padding:5px;
+  }
+  #contain_moon div:nth-child(4) svg{
+    /* next full moon icon */
+    width: 0;
+  }
+  #contain_moon div:nth-child(4) b{
+    /* next full moon day number */
+    color: white;
+  }
+  

@@ -11,10 +11,15 @@ button {
   font-size: 1rem;
   font-family: @font-family-headings;
   &-primary {
-    background-color: @btn-cta-primary-bg;
+    background-color: @body;
     color: @btn-cta-primary-color;
     padding: @btn-cta-padding;
-
+    color: @black !important;
+    font-size: 18px;
+    font-weight: 600;
+    @media @desktop-max {
+      font-size: 16px;
+    }
     &:hover,
     &:active,
     &:focus {
